@@ -15,20 +15,20 @@ console.log("hello");
   var database = firebase.database();
 
   //Add Submit Button On Click Event
-  $("add-train-btn").on("click", function (event) {
+  $("#add-train-btn").on("click", function (event) {
       event.preventDefault();
 
       //Pull Inputs
       var $trainName = $("#train-name-input").val().trim();
       var $destinationInput = $("#destination-input").val().trim();
       var $trainTimeInput = $("#time-input").val().trim();
-      var $frequencyinput = $("#train-name-input").val().trim();
+      var $frequencyInput = $("#train-name-input").val().trim();
 
       var addTrain = {
           train: $trainName,
           destination: $destinationInput,
           time: $trainTimeInput,
-          frequency: $frequencyinput,
+          frequency: $frequencyInput,
       };
 
       //Upload Employee Data To Database
@@ -51,17 +51,27 @@ console.log("hello");
       console.log(childSnapshot.val());
 
       //Store Info Into Variables
-      var $trainName = childSnapshot.val().trim();
-      var $destinationInput = childSnapshot.val().trim();
-      var $trainTimeInput = childSnapshot.val().trim();
-      var $frequencyinput = childSnapshot.val().trim();
+      var $trainName = childSnapshot.val().train;
+      var $destinationInput = childSnapshot.val().destination;
+      var $trainTimeInput = childSnapshot.val().time;
+      var $frequencyInput = childSnapshot.val().frequency;
     
       // Employee Info
       console.log($trainName);
       console.log($destinationInput);
       console.log($trainTimeInput);
-      console.log($frequencyinput);
+      console.log($frequencyInput);
 
-      var
+    //Create New Row
+    console.log("adding train info")
+    var newRow = $("<tr>").append(
+        $("<td>").text($trainName),
+        $("<td>").text($destinationInput),
+        $("<td>").text($trainTimeInput),
+        $("<td>").text($frequencyInput),
+        //$("<td>").text(empRate),
+        //$("<td>").text(empBilled)
+      );
+      $("#train-table").append(newRow);
 
   });
